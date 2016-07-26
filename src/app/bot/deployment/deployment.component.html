@@ -1,0 +1,144 @@
+<div class="container">
+  <div class="panel panel-blue">
+    <div class="panel-heading">
+        Deployment
+    </div>
+    <div class="panel-body">
+      <div class="alert alert-danger" *ngIf="errorMessage">
+        <a class="close" data-dismiss="alert" aria-label="close"></a>
+        <strong>Message!</strong>
+        {{errorMessage}}
+      </div>
+      <div class="row custom-row">
+        <div class="col-md-6 col-sm-6 integration-box">
+            <h4>WebChat</h4>
+            <ToggleSwitch [(ngModel)]="webchat_flag" (change)="checkbox('WebChat')"></ToggleSwitch>
+            <div [hidden]="!webchat_flag">
+                <div class="design-form">
+                    <h6 class="form-title">WebChat</h6>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="webchatKey" [ngModelOptions]="{standalone: true}" readonly>
+                    </div>
+                    <p>Authorized Domains : </p>
+                    <div *ngFor="let domain of auth_domain; let i = index">
+                        <div class="row" *ngIf="i == 0">
+                            <div class="col-md-9">
+                                <input type="text" class="form-control domain-input" placeholder="Authorized Domain" [(ngModel)]="auth_domain[i].domain" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="form-control col-md-3 btn btn-primary add-button" (click)="addDomain()">+</button>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="i > 0">
+                            <div class="col-md-9">
+                                <input type="text" class="form-control domain-input" placeholder="Authorized Domain" [(ngModel)]="auth_domain[i].domain" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="form-control btn btn-primary add-button" (click)="delDomain(auth_domain[i])">x</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="form-group btn btn-primary add-button" (click)="JSModal.open()">Generate Javascript</button>
+                    <modal #JSModal>
+                        <modal-header>
+                            <h4 class="modal-title">Javascript</h4>
+                        </modal-header>
+                        <modal-body>
+                            {{javascript_code}}
+                        </modal-body>
+                        <modal-footer>
+                            <button type="button" class="btn btn-primary" (click)="JSModal.close()">Ok</button>
+                        </modal-footer>
+                    </modal>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 integration-box">
+            <h4>Facebook</h4>
+            <ToggleSwitch [(ngModel)]="facebook_flag" (change)="checkbox('Facebook')"></ToggleSwitch>
+            <div [hidden]="!facebook_flag">
+                <div class="design-form">
+                    <h6 class="form-title">Facebook</h6>
+                    <div class="form-group" *ngFor="let fb of facebookActiveSites">
+                        <input type="text" class="form-control" [(ngModel)]="fb.PAGE_ID" [ngModelOptions]="{standalone: true}" readonly>
+                    </div>
+                    <div class="form-group" *ngIf="!isFacebookLoggedin">
+                        <button type="button" class="form-control btn btn-primary add-button" (click)="login_Facebook()">Login to Facebook</button>
+                    </div>
+                    <div class="form-group" *ngIf="isFacebookLoggedin && facebookAvailableSites.length">
+                        <p *ngIf="selectedFBSite.category === 'available'">
+                            You have administrative access to the following Facebook sites. Select the site that you want to deploy the bot to : 
+                        </p>
+                        <p *ngIf="selectedFBSite.category === 'pending'">
+                            Your bot is in pending status and will be active soon. No further action is required.
+                        </p>
+                        <p *ngIf="selectedFBSite.category === 'active'">
+                            Your bot already was activated.
+                        </p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select [(ngModel)]="selectedFBSite" (ngModelChange)="updateFBSite($event)">
+                                    <option *ngFor="let fb of facebookAvailableSites" [ngValue]="fb">{{fb.name}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6" *ngIf="selectedFBSite.category === 'available'">
+                                <button type="button" class="form-control btn btn-primary add-button" (click)="deployFBSite()">Deploy</button>
+                            </div>
+                            <div class="col-md-6" *ngIf="selectedFBSite.category === 'active'">
+                                <button type="button" class="form-control btn btn-primary add-button" (click)="removeFBSite()">Remove</button>
+                            </div>
+                        </div>             
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="row custom-row">
+        <div class="col-md-6 col-sm-6 integration-box">
+            <h4>SMS</h4>
+            <ToggleSwitch [(ngModel)]="sms_flag" (change)="checkbox('SMS')"></ToggleSwitch>
+            <div [hidden]="!sms_flag">
+                <form role="form" class="design-form">
+                    <h6 class="form-title">SMS</h6>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="twilio.PHONE_NUMBER" [ngModelOptions]="{standalone: true}" placeholder="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="twilio.AUTH_TOKEN" [ngModelOptions]="{standalone: true}" placeholder="Auth Token">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="twilio.ACCOUNT_SID" [ngModelOptions]="{standalone: true}" placeholder="Account SID">
+                    </div>
+                    <div class="form-group">
+                        <style type="text/css">
+                            #twilio-connect-button {
+                                background: url(https://www.twilio.com/bundles/connect-apps/img/connect-button.png);
+                                width: 130px; height: 34px; display: block; margin: 0 auto;
+                            }
+                            #twilio-connect-button:hover { background-position: 0 34px; }
+                        </style>
+                        <a href="https://www.twilio.com/authorize/CNcd81b2231faf497d2fe237630035604a" id="twilio-connect-button"></a>
+                    </div>
+                    <div class="form-group">
+                        <a href="https://www.twilio.com/try-twilio" target="_blank">Sign Up For Twilio</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 integration-box">
+            <h4>WordPress</h4>
+            <ToggleSwitch [(ngModel)]="wordpress_flag" (change)="checkbox('Wordpress')"></ToggleSwitch>
+            <div [hidden]="!wordpress_flag">
+                <div class="design-form">
+                    <button type="button" class="form-group btn btn-primary add-button">Download Wordpress Plugin</button>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <button type="button" class="btn btn-primary pull-right save-button" (click)="saveBotIntegraions()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
