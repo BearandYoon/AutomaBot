@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="alert alert-danger" *ngIf="errorMessage">
+        <a class="close" data-dismiss="alert" aria-label="close"></a>
+        <strong>Message!</strong>
+        {{errorMessage}}
+    </div>
+    <div class="col-sm-6">
+        <div class="panel panel-blue">
+            <div class="panel-heading">
+                Bot Details
+            </div>
+            <div class="panel-body">
+                <form role="form">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"></span>
+                        <input type="text" class="form-control" [(ngModel)]="bot.bot.name" [ngModelOptions]="{standalone: true}" (ngModelChange)="detectChanges($event)" placeholder="Name">
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">@</span>
+                        <input type="email" class="form-control" [(ngModel)]="bot.bot.email" [ngModelOptions]="{standalone: true}" (ngModelChange)="detectChanges($event)" placeholder="Bot Email Address">
+                    </div>
+                    <div class="form-group avatar-container">
+                        <img [src]="bot.bot.avatar" class="img-avatar">
+                        <input type="file">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="panel panel-blue">
+            <div class="panel-heading">
+                Colors
+            </div>
+            <div class="panel-body">
+                <form role="form" class="design-form">
+                    <h6 class="form-title">Navbar</h6>
+                    <div class="form-group">
+                        <input class="colorbox" [(colorPicker)]="bot.navbar.bg" [style.background]="bot.navbar.bg" (colorPickerChange)="detectChanges($event)" />
+                        <span>Background</span>
+                    </div>
+                    <div class="form-group">
+                        <img [src]="bot.navbar.logo" class="img-avatar">
+                        <span>Logo</span>
+                        <input type="file">
+                    </div>
+                </form>
+                <br>
+                <form role="form" class="design-form">
+                    <h6 class="form-title">Infobox</h6>
+                    <div class="form-group">
+                        <input class="colorbox" [(colorPicker)]="bot.infoBox.header.bg" [style.background]="bot.infoBox.header.bg" (colorPickerChange)="detectChanges($event)" />
+                        <span>Header Background</span>
+                    </div>
+                    <div class="form-group">
+                        <input class="colorbox" [(colorPicker)]="bot.infoBox.header.title" [style.background]="bot.infoBox.header.title" (colorPickerChange)="detectChanges($event)" />
+                        <span>Title Font</span>
+                    </div>
+                    <div class="form-group">
+                        <input class="colorbox" [(colorPicker)]="bot.infoBox.header.subtitle" [style.background]="bot.infoBox.header.subtitle" (colorPickerChange)="detectChanges($event)" />
+                        <span>Subtitle Font</span>
+                    </div>
+                    <div class="form-group">
+                        <input class="colorbox" [(colorPicker)]="bot.infoBox.body.bg" [style.background]="bot.infoBox.body.bg" (colorPickerChange)="detectChanges($event)" />
+                        <span>Body</span>
+                    </div>
+                </form>
+                <br>
+                <form role="form" class="design-form">
+                    <h6 class="form-title">Chat Window</h6>
+                    <div class="form-group">
+                        <input class="colorbox" [(colorPicker)]="bot.chatWindow.bg" [style.background]="bot.chatWindow.bg" (colorPickerChange)="detectChanges($event)" />
+                        <span>Background</span>
+                    </div>
+                    <div class="form-group">
+                        <input class="colorbox" [(colorPicker)]="bot.chatWindow.sentBubble" [style.background]="bot.chatWindow.sentBubble" (colorPickerChange)="detectChanges($event)" />
+                        <span>Bot message bubble</span>
+                    </div>
+                    <div class="form-group">
+                        <input class="colorbox" [(colorPicker)]="bot.chatWindow.userBubble" [style.background]="bot.chatWindow.userBubble" (colorPickerChange)="detectChanges($event)" />
+                        <span>User message bubble </span>
+                    </div>
+                    <div class="form-group">
+                        <input class="colorbox" [(colorPicker)]="bot.chatWindow.quickReplies.bg" [style.background]="bot.chatWindow.quickReplies.bg" (colorPickerChange)="detectChanges($event)" />
+                        <span>Quick reply button background</span>
+                    </div>
+                    <div class="form-group">
+                        <input class="colorbox" [(colorPicker)]="bot.chatWindow.quickReplies.border" [style.background]="bot.chatWindow.quickReplies.border" (colorPickerChange)="detectChanges($event)" />
+                        <span>Quick reply button background</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <button type="button" *ngIf="IschangeValue" class="btn btn-primary pull-right save-button" (click)="saveBotDesign()">Save Changes</button>
+        <button type="button" *ngIf="!IschangeValue" class="btn btn-primary pull-right save-button disabled" (click)="saveBotDesign()">Save Changes</button>
+    </div>
+</div>
