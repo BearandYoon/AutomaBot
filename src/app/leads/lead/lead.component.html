@@ -1,0 +1,120 @@
+<div class="row">
+    <div class="col-lg-2 col-md-4 col-sm-6 panel-margin">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-comments fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{sessions_count}}</div>
+                        <div>Conversations</div>
+                    </div>
+                </div>
+            </div>
+            <a (click)="visibleTable(1)">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6 panel-margin">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-commenting fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{clientMessages_count}}</div>
+                        <div>Client Messages</div>
+                    </div>
+                </div>
+            </div>
+            <a (click)="visibleTable(2)">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6 panel-margin">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{cmaRequests_count}}</div>
+                        <div>CMA Requests</div>
+                    </div>
+                </div>
+            </div>
+            <a (click)="visibleTable(3)">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6 panel-margin">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-wrench fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{newListingUpdates_count}}</div>
+                        <div>Listing Updates</div>
+                    </div>
+                </div>
+            </div>
+            <a (click)="visibleTable(4)">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-4 col-sm-6 panel-margin">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-bell fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{soldAlerts_count}}</div>
+                        <div>Sold Alerts</div>
+                    </div>
+                </div>
+            </div>
+            <a (click)="visibleTable(5)">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<realtor-table [columns]="queryColumns" [data]="QueriesData" *ngIf="visibleTableNumber === 1&&isArrived == true"></realtor-table>
+<realtor-table [columns]="conversionColumns" [data]="conversionData" *ngIf="visibleTableNumber === 1&&isArrived == true"></realtor-table>
+<realtor-table [columns]="clientMsgColumns" [data]="clientMessageData" *ngIf="visibleTableNumber === 2&&isArrived == true"></realtor-table>
+<realtor-table [columns]="cmaColumns" [data]="cmaRequestData" *ngIf="visibleTableNumber === 3&&isArrived == true"></realtor-table>
+<realtor-table [columns]="listingColumns" [data]="listingUpdateData" *ngIf="visibleTableNumber === 4&&isArrived == true"></realtor-table>
+<realtor-table [columns]="alertColumns" [data]="soldAlertData" *ngIf="visibleTableNumber === 5&&isArrived == true"></realtor-table>
+
