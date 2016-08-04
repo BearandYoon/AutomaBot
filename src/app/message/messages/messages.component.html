@@ -1,0 +1,91 @@
+<div class="row no-gaps">
+    <div class="col-sm-3 msg-panel">
+        <div class="panel panel-blue messages-panel">
+            <!--             <div class="panel-heading">
+                Sessions
+            </div> -->
+            <div class="panel-body" [style.max-height]="height">
+                <div class="list-group">
+                    <div *ngFor="let session of sessionsData">
+                        <div class="list-group-item" (click)='getMessageInfo(session)'>
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <letter-avatar [avatardata]="{text:session.user_name, background:session.user_color }"></letter-avatar>
+                                </div>
+                                <div class="col-xs-9">
+                                    <span class="time">{{session.time_ago}}</span>
+                                    <strong>{{session.user_name}}</strong>
+                                    <p>{{session.last_message}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 msg-panel">
+        <div class="panel panel-blue">
+            <!-- <div class="panel-heading">
+                Message Body
+            </div> -->
+            <div class="panel-body msg_container_base" [style.max-height]="height">
+                <div class="" *ngFor="let dialogue of sel_session.dialogue">
+                    <div *ngIf="dialogue.sender === 'bot'">
+                        <div *ngFor="let message of dialogue.messages">
+                            <div class="msg_container base_sent">
+                                <div class="col-md-10 col-xs-10">
+                                    <div class="messages msg_sent">
+                                        <p>{{message._text}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-xs-2 avatar">
+                                    <img src="../../../assets/img/avatars/bot.png" class=" img-responsive ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="dialogue.sender === 'user'">
+                        <div *ngFor="let message of dialogue.messages">
+                            <div class="msg_container base_receive">
+                                <div class="col-md-2 col-xs-2 avatar">
+                                    <img src="../../../assets/img/avatars/user.jpg" class=" img-responsive ">
+                                </div>
+                                <div class="col-md-10 col-xs-10">
+                                    <div class="messages msg_receive">
+                                        <p>{{message._text}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 msg-panel">
+        <div class="panel panel-blue">
+            <!--  <div class="panel-heading">
+                User Info
+            </div> -->
+            <div class="panel-body" [style.max-height]="height">
+                <div class="list-group">
+                    <div class="list-group-item" *ngIf="sel_user._id">
+                        <div class="form-group">
+                            <label class="title">Name : </label>
+                            <label> {{sel_user.name}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="title">platform : </label>
+                            <label> {{sel_user.platform}}</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="title">senderId : </label>
+                            <label> {{sel_user.senderId}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
