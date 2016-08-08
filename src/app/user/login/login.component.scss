@@ -1,0 +1,150 @@
+.shadow_container {
+    margin-top: 50px;
+    max-width: 750px;
+    box-shadow: 0 0 8px 5px rgba(0, 0, 0, 0.07);
+    padding: 100px 100px 30px 100px;
+}
+
+.button-group {
+    text-align: right;
+    margin-bottom: 10px;
+    margin-right: 50px;
+}
+
+.content-wrapper {
+    background: url("../../../assets/img/login/background-2.jpg") no-repeat fixed center center;
+    background-size: cover;
+    font-family: Montserrat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+a.forgot-password {
+    text-align: center;
+    display: block;
+}
+
+.sign-up {
+    margin-top: 30px;
+    text-align: center;
+    display: block;
+}
+
+.logo {
+    height: 75px;
+    background: url(../../../assets/img/login/logo-mark.png) no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: 80px auto 15px;
+}
+
+.login-block {
+    max-width: 410px;
+    padding: 25px 40px;
+    background: #fff;
+    border-radius: 5px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    h1 {
+        text-align: center;
+        color: #000;
+        font-size: 18px;
+        text-transform: uppercase;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+    input {
+        width: 100%;
+        height: 42px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-family: Montserrat;
+        padding: 0 20px 0 40px;
+        outline: none;
+        &:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px white inset;
+        }
+    }
+    button {
+        width: 100%;
+        height: 40px;
+        background: #4ECE3D;
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: 1px solid #4ECE3D;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-family: Montserrat;
+        outline: none;
+        cursor: pointer;
+        &:hover {
+            background: #44B235;
+        }
+    }
+}
+
+.inner-addon {
+    position: relative;
+    .fa {
+        position: absolute;
+        font-size: 20px;
+        margin: 10px;
+        color: #2C4059;
+        &.fa-check {
+            position: absolute;
+            right: 0;
+            margin: 10px;
+            top: 0;
+            color: #4ECE3D;
+        }
+    }
+}
+
+// .login-block input#username {
+//     background: #fff url('../../../assets/img/login/login-user.png') 20px top no-repeat;
+//     background-size: 16px 80px;
+// }
+// .login-block input#username:focus {
+//     background: #fff url('../../../assets/img/login/login-user.png') 20px bottom no-repeat;
+//     background-size: 16px 80px;
+// }
+// .login-block input#password {
+//     background: #fff url('../../../assets/img/login/login-password.png') 20px top no-repeat;
+//     background-size: 16px 80px;
+// }
+// .login-block input#password:focus {
+//     background: #fff url('../../../assets/img/login/login-password.png') 20px bottom no-repeat;
+//     background-size: 16px 80px;
+// }
+// .login-block input:active,
+// .login-block input:focus {
+//     border: 1px solid #20a8d8;
+// }
+.logo-top-text {
+    text-align: center;
+    color: white;
+    h1 {
+        font-size: 28px;
+    }
+    p {
+        max-width: 270px;
+        margin: 0 auto 20px;
+    }
+}
+
+.login-text {
+    text-align: center;
+    display: block;
+    margin-bottom: 30px;
+    color: #2C4059;
+    font-weight: 500;
+    font-size: 17px;
+}
