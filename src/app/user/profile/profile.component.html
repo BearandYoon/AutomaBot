@@ -1,0 +1,85 @@
+<div class="container">
+    <div class="alert alert-danger" *ngIf="errorMessage">
+        <a class="close" data-dismiss="alert" aria-label="close"></a>
+        <strong>Message!</strong> {{errorMessage}}
+    </div>
+    <div class="row">
+        <div class="row page-title">
+            <div class="col-xs-12">
+                <h4>Settings - Profile</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <img [src]="user.avatar" class="img-avatar">
+                    <input type="file" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="biography">Biography:</label>
+                    <textarea rows="2" class="form-control" placeholder="Biography" [(ngModel)]="user.biography"></textarea>
+                </div>
+                <!-- <div class="market-selector">
+                <ng-select [multiple]="true" [items]="marketOptions" [active]="markets" [disabled]="disabled" (data)="refreshValue($event)" (selected)="selected($event)" (removed)="removed($event)" placeholder="type your market here"></ng-select>
+            </div> -->
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" placeholder="Name" [(ngModel)]="user.name">
+                </div>
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" class="form-control" placeholder="City" [(ngModel)]="user.city">
+                </div>
+                <div class="form-group">
+                    <label for="website">Website:</label>
+                    <input type="text" class="form-control" placeholder="Website" [(ngModel)]="user.website">
+                </div>
+                <div class="form-group" *ngFor="let phone of phones; let i = index">
+                    <label for="phone">Phone Number:</label>
+                    <div class="row" *ngIf="i == 0">
+                        <input type="text" class="form-control col-md-8 phone-input" placeholder="123456798" [(ngModel)]="phones[i].phone">
+                        <button type="button" class="form-control btn btn-primary add-button" (click)="addPhoneNumber()">+</button>
+                    </div>
+                    <div class="row user-info-row" *ngIf="i > 0">
+                        <label class="title col-md-4"></label>
+                        <input type="text" class="form-control col-md-8 phone-input" placeholder="123456798" [(ngModel)]="phones[i].phone">
+                        <button type="button" class="form-control btn btn-primary add-button" (click)="delPhoneNumber(phones[i])">x</button>
+                    </div>
+                </div>
+                <div class="form-inline form-group" *ngFor="let email of emails; let i = index">
+                    <div class="row user-info-row" *ngIf="i == 0">
+                        <label class="title col-md-4">Email : </label>
+                        <input type="text" class="form-control col-md-8 phone-input" placeholder="Email" [(ngModel)]="emails[i].email">
+                        <button type="button" class="form-control btn btn-primary add-button" (click)="addEmail()">+</button>
+                    </div>
+                    <div class="row user-info-row" *ngIf="i > 0">
+                        <label class="title col-md-4"></label>
+                        <input type="text" class="form-control col-md-8 phone-input" placeholder="Email" [(ngModel)]="emails[i].email">
+                        <button type="button" class="form-control btn btn-primary add-button" (click)="delEmail(emails[i])">x</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" placeholder="Password" [(ngModel)]="user.password">
+                </div>
+                <div class="form-group">
+                    <label for="msa">Market Statistic Area (MSA):</label>
+                    <input type="text" class="form-control" placeholder="Market Statistic Area (MSA)" [(ngModel)]="user.msa">
+                </div>
+                <div class="form-group">
+                    <label for="soldAlertMaxPct">Sold Alert Max Percent:</label>
+                    <input type="text" class="form-control" placeholder="Sold Alert Max Percent" [(ngModel)]="user.soldAlertMaxPct">
+                </div>
+                <div class="form-group">
+                    <label for="soldAlertMinPct">Sold Alert Min Percent:</label>
+                    <input type="text" class="form-control" placeholder="Sold Alert Min Percent" [(ngModel)]="user.soldAlertMinPct">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-primary pull-right save-button" (click)="saveUserProfile()">Save Changes</button>
+        </div>
+    </div>
+</div>
